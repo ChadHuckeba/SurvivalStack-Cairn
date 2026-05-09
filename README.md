@@ -28,7 +28,7 @@ Cairn produces highly structured, UTC-based logs.
 
 **Console Format:**
 ```text
-2026-05-09 12:00:00,000 | INFO     | Aether | aether.engine | Cairn initialized successfully.
+2026-05-09 12:00:00,000 | INFO | Aether | aether.engine | Cairn initialized successfully.
 ```
 
 **File Format:**
