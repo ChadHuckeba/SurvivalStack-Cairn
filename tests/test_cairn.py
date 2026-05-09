@@ -1,5 +1,4 @@
 import logging
-import time
 from cairn import Cairn, get_logger, cairn_test_context
 
 def test_cairn_initialization(tmp_path):

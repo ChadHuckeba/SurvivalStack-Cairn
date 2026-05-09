@@ -20,3 +20,18 @@ dev = [
     "pytest-cov>=7.1.0",
     "ruff>=0.15.12",
 ]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.mypy]
+strict = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]

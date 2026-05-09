@@ -14,11 +14,25 @@ class Cairn:
     def initialize(
         cls, 
         project_name: str, 
-        log_file: str = None, 
+        log_file: str | None = None, 
         level: str = "INFO",
         rotation_mb: int = 10,
         backup_count: int = 5
-    ):
+    ) -> None:
+        """
+        Initializes the Cairn singleton, establishing global logging configurations.
+        
+        WARNING: This is a destructive operation. It will clear all existing
+        handlers on the root logger and replace them with Cairn's standard
+        console and (optional) file handlers.
+        
+        Args:
+            project_name: The name of the project initializing the logger.
+            log_file: Optional path to a file for log rotation output.
+            level: The root logging level (e.g., 'INFO', 'DEBUG').
+            rotation_mb: Max file size in MB before rotation occurs.
+            backup_count: Number of backup log files to retain.
+        """
         with cls._lock:
             if cls._initialized:
                 return
@@ -59,8 +73,13 @@ class Cairn:
             cls._initialized = True
 
     @classmethod
-    def reset(cls):
-        """Resets the Cairn state for testing purposes."""
+    def reset(cls) -> None:
+        """
+        Resets the Cairn state, removing all handlers and filters from the root logger.
+        
+        This is primarily used for testing purposes to ensure a clean state
+        between test cases.
+        """
         with cls._lock:
             root_logger = logging.getLogger()
             for handler in root_logger.handlers[:]:
@@ -72,7 +91,12 @@ class Cairn:
             cls._project_name = "SSUnknown"
 
     @classmethod
-    def set_level(cls, level: str):
-        """Thread-safe level adjustment."""
+    def set_level(cls, level: str) -> None:
+        """
+        Thread-safe method to adjust the global logging level dynamically.
+        
+        Args:
+            level: The new logging level string (e.g., 'DEBUG', 'WARNING').
+        """
         with cls._lock:
             logging.getLogger().setLevel(level.upper())
