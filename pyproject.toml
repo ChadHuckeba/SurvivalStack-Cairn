@@ -1,7 +1,9 @@
 [project]
-name = "ss-cairn"
+# Canonical naming decision: Enforcing 'cairn' for 1:1:1 mapping across registry, pyproject, folder, and import name.
+name = "cairn"
 version = "0.1.0"
 description = "SurvivalStack Centralized Logging"
+requires-python = ">=3.12"
 dependencies = []
 
 [build-system]
