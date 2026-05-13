@@ -1,4 +1,4 @@
-# SurvivalStack Cairn
+# Cairn®
 
 **Cairn** is the centralized, authoritative logging library for the SurvivalStack ecosystem. It ensures consistent log formatting, file rotation, and contextual attribution (e.g., project names) across all Product Line Architecture services.
 
